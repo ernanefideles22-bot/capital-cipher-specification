@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/system-event.schema.json",
+  "title": "SystemEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "correlation_id",
+    "event_type",
+    "source",
+    "timestamp",
+    "version",
+    "payload"
+  ],
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "SYSTEM_STARTED",
+        "SYSTEM_STOPPED",
+        "SYSTEM_MODE_CHANGED",
+        "SYSTEM_READY",
+        "KILL_SWITCH_TRIGGERED",
+        "AUDIT_FAILED",
+        "DATABASE_UNAVAILABLE",
+        "MARKET_DATA_UNAVAILABLE",
+        "RISK_ENGINE_FAILED"
+      ]
+    },
+    "source": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+    "payload": { "type": "object" }
+  }
+}
