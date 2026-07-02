@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/decision.schema.json",
+  "title": "Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision_id",
+    "correlation_id",
+    "symbol",
+    "timeframe",
+    "candidate_action",
+    "confidence",
+    "strategy",
+    "reason",
+    "agent_summary",
+    "warnings",
+    "risk_status",
+    "created_at"
+  ],
+  "properties": {
+    "decision_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "symbol": { "type": "string", "minLength": 1 },
+    "timeframe": { "type": "string" },
+    "candidate_action": {
+      "type": "string",
+      "enum": ["BUY", "SELL", "HOLD", "WAIT", "BLOCK"]
+    },
+    "confidence": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "strategy": { "type": "string" },
+    "reason": { "type": "string" },
+    "agent_summary": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_status": {
+      "type": "string",
+      "enum": ["PENDING", "APPROVED", "REDUCED", "BLOCKED", "KILL_SWITCH"]
+    },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}
