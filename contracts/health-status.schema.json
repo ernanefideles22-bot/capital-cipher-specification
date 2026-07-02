@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/health-status.schema.json",
+  "title": "HealthStatus",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "service",
+    "status",
+    "version",
+    "mode",
+    "timestamp"
+  ],
+  "properties": {
+    "service": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["OK", "DEGRADED", "ERROR", "OFFLINE"] },
+    "version": { "type": "string" },
+    "mode": { "type": "string", "enum": ["OFFLINE", "PAPER", "LIVE_LOCKED", "LIVE", "ERROR", "MAINTENANCE"] },
+    "components": { "type": "object" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  }
+}
