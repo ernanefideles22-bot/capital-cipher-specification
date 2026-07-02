@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/market-event.schema.json",
+  "title": "MarketEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "correlation_id",
+    "event_type",
+    "source",
+    "timestamp",
+    "version",
+    "exchange",
+    "symbol",
+    "payload"
+  ],
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "event_type": {
+      "type": "string",
+      "enum": ["MARKET_CONNECTED", "MARKET_DISCONNECTED", "CANDLE_CLOSED", "TRADE_RECEIVED", "ORDERBOOK_UPDATED"]
+    },
+    "source": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+    "exchange": { "type": "string", "enum": ["BINANCE", "BYBIT"] },
+    "symbol": { "type": "string", "minLength": 1 },
+    "payload": { "type": "object" }
+  }
+}
