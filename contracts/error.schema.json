@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/error.schema.json",
+  "title": "SystemError",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "error_code",
+    "message",
+    "severity",
+    "correlation_id",
+    "recoverable",
+    "metadata",
+    "created_at"
+  ],
+  "properties": {
+    "error_code": { "type": "string", "minLength": 1 },
+    "message": { "type": "string", "minLength": 1 },
+    "severity": { "type": "string", "enum": ["INFO", "WARNING", "ERROR", "CRITICAL"] },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "recoverable": { "type": "boolean" },
+    "metadata": { "type": "object" },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}
