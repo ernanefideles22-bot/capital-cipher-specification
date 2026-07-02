@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/paper-order.schema.json",
+  "title": "PaperOrder",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "paper_order_id",
+    "decision_id",
+    "risk_check_id",
+    "correlation_id",
+    "exchange",
+    "symbol",
+    "side",
+    "entry_price",
+    "position_size",
+    "status",
+    "fees_estimated",
+    "slippage_estimated",
+    "created_at"
+  ],
+  "properties": {
+    "paper_order_id": { "type": "string", "format": "uuid" },
+    "decision_id": { "type": "string", "format": "uuid" },
+    "risk_check_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "exchange": { "type": "string", "enum": ["BINANCE", "BYBIT"] },
+    "symbol": { "type": "string", "minLength": 1 },
+    "side": { "type": "string", "enum": ["BUY", "SELL"] },
+    "entry_price": { "type": "number" },
+    "stop_loss": { "type": ["number", "null"] },
+    "take_profit": { "type": ["number", "null"] },
+    "position_size": { "type": "number", "minimum": 0 },
+    "status": {
+      "type": "string",
+      "enum": ["CREATED", "FILLED", "PARTIALLY_FILLED", "CANCELLED", "CLOSED", "EXPIRED", "FAILED"]
+    },
+    "fees_estimated": { "type": "number", "minimum": 0 },
+    "slippage_estimated": { "type": "number", "minimum": 0 },
+    "opened_at": { "type": ["string", "null"], "format": "date-time" },
+    "closed_at": { "type": ["string", "null"], "format": "date-time" },
+    "pnl": { "type": ["number", "null"] },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}
