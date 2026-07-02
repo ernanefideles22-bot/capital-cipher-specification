@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/agent-output.schema.json",
+  "title": "AgentOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agent_name",
+    "status",
+    "signal",
+    "confidence",
+    "reason",
+    "evidence",
+    "warnings",
+    "latency_ms",
+    "created_at"
+  ],
+  "properties": {
+    "agent_name": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["COMPLETED", "FAILED", "TIMEOUT", "SKIPPED", "BLOCKED"]
+    },
+    "signal": {
+      "type": "string",
+      "enum": ["BUY", "SELL", "HOLD", "WAIT", "BLOCK", "NEUTRAL"]
+    },
+    "confidence": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "reason": { "type": "string" },
+    "evidence": { "type": "object" },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "latency_ms": { "type": "integer", "minimum": 0 },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}
