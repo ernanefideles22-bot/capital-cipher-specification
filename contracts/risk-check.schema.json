@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/risk-check.schema.json",
+  "title": "RiskCheck",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "risk_check_id",
+    "decision_id",
+    "correlation_id",
+    "risk_status",
+    "approved",
+    "reason",
+    "warnings",
+    "created_at"
+  ],
+  "properties": {
+    "risk_check_id": { "type": "string", "format": "uuid" },
+    "decision_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "risk_status": {
+      "type": "string",
+      "enum": ["APPROVED", "REDUCED", "BLOCKED", "KILL_SWITCH"]
+    },
+    "approved": { "type": "boolean" },
+    "position_size": { "type": ["number", "null"], "minimum": 0 },
+    "risk_percent": { "type": ["number", "null"], "minimum": 0 },
+    "stop_loss": { "type": ["number", "null"] },
+    "take_profit": { "type": ["number", "null"] },
+    "risk_reward": { "type": ["number", "null"], "minimum": 0 },
+    "reason": { "type": "string" },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}
