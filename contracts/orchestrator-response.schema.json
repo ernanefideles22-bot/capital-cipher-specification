@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/orchestrator-response.schema.json",
+  "title": "OrchestratorResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "response_id",
+    "request_id",
+    "correlation_id",
+    "status",
+    "decision_id",
+    "agent_outputs",
+    "warnings",
+    "latency_ms",
+    "created_at"
+  ],
+  "properties": {
+    "response_id": { "type": "string", "format": "uuid" },
+    "request_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "status": { "type": "string", "enum": ["COMPLETED", "FAILED", "BLOCKED", "PARTIAL"] },
+    "decision_id": { "type": ["string", "null"], "format": "uuid" },
+    "agent_outputs": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "latency_ms": { "type": "integer", "minimum": 0 },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}
