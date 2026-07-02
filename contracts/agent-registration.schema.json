@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/agent-registration.schema.json",
+  "title": "AgentRegistration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agent_name",
+    "version",
+    "description",
+    "required_inputs",
+    "output_contract",
+    "critical",
+    "timeout_ms",
+    "enabled"
+  ],
+  "properties": {
+    "agent_name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "required_inputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "output_contract": { "type": "string", "minLength": 1 },
+    "critical": { "type": "boolean" },
+    "timeout_ms": { "type": "integer", "minimum": 1 },
+    "enabled": { "type": "boolean" }
+  }
+}
