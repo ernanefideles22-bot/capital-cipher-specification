@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/audit-log.schema.json",
+  "title": "AuditLog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "audit_id",
+    "correlation_id",
+    "audit_type",
+    "entity_type",
+    "payload",
+    "created_at"
+  ],
+  "properties": {
+    "audit_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "audit_type": { "type": "string", "minLength": 1 },
+    "entity_type": { "type": "string", "minLength": 1 },
+    "entity_id": { "type": ["string", "null"], "format": "uuid" },
+    "payload": { "type": "object" },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}
