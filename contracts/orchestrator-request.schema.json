@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://capital-cipher.ai/contracts/orchestrator-request.schema.json",
+  "title": "OrchestratorRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_id",
+    "correlation_id",
+    "event_type",
+    "exchange",
+    "symbol",
+    "timeframe",
+    "market_context",
+    "created_at"
+  ],
+  "properties": {
+    "request_id": { "type": "string", "format": "uuid" },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "event_type": { "type": "string", "enum": ["CANDLE_CLOSED", "MANUAL_EVALUATION"] },
+    "exchange": { "type": "string", "enum": ["BINANCE", "BYBIT"] },
+    "symbol": { "type": "string", "minLength": 1 },
+    "timeframe": { "type": "string" },
+    "market_context": { "type": "object" },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}
